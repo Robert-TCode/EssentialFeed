@@ -7,16 +7,16 @@
 
 import Foundation
 
-public final class RemoteFeedLoader {
+public final class RemoteFeedLoader: FeedLoader {
     private let url: URL
     private let client: HTTPClient
 
-    public enum Error: LocalizedError{
+    public enum Error: LocalizedError {
         case connectivity
         case invalidData
     }
 
-    public typealias FeedResult = Result<[FeedItem], Error>
+    public typealias FeedResult = LoadFeedResult
 
     public init(url: URL, client: HTTPClient) {
         self.url = url
@@ -32,7 +32,7 @@ public final class RemoteFeedLoader {
                 completion(FeedItemMapper.map(data, from: response))
 
             case .failure:
-                completion(.failure(.connectivity))
+                completion(.failure(Error.connectivity))
             }
         }
     }
