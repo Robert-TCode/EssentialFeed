@@ -10,16 +10,16 @@ import EssentialFeed
 
 class EssentialFeedCacheIntegrationTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
+    override func setUp() {
+        super.setUp()
 
-        try setupEmptyStoreState()
+        setupEmptyStoreState()
     }
 
-    override func tearDownWithError() throws {
-        try undoStoreSideEffects()
+    override func tearDown() {
+        super.tearDown()
 
-        try super.tearDownWithError()
+        undoStoreSideEffects()
     }
 
     func test_retrieve_deliversEmptyOnEmptyCache() throws {
@@ -73,11 +73,11 @@ class EssentialFeedCacheIntegrationTests: XCTestCase {
         return sut
     }
 
-    private func setupEmptyStoreState() throws {
+    private func setupEmptyStoreState() {
         deleteStoreArtifacts()
     }
 
-    private func undoStoreSideEffects() throws {
+    private func undoStoreSideEffects() {
         deleteStoreArtifacts()
     }
 
