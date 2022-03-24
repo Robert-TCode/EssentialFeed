@@ -53,6 +53,18 @@ class EssentialFeedCacheIntegrationTests: XCTestCase {
         expect(storeToLoad, toRetrieve: .found(feed: latestFeed.local, timestamp: latestTimestamp))
     }
 
+    func test_delete_deletesFeedInsertedOnAnotherInstance() throws {
+        let storeToInsert = try makeSUT()
+        let storeToDelete = try makeSUT()
+        let storeToLoad = try makeSUT()
+
+        insert((uniqueImageFeed().local, Date()), to: storeToInsert)
+
+        deleteCache(from: storeToDelete)
+
+        expect(storeToLoad, toRetrieve: .empty)
+    }
+
     // - MARK: Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) throws -> FeedStore {
@@ -72,7 +84,7 @@ class EssentialFeedCacheIntegrationTests: XCTestCase {
     private func deleteStoreArtifacts() {
         try? FileManager.default.removeItem(at: testSpecificStoreURL())
     }
-    
+
     private func testSpecificStoreURL() -> URL {
         cachesDirectory().appendingPathComponent("\(type(of: self)).store")
     }
