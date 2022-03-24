@@ -16,6 +16,17 @@ class EssentialFeedCacheIntegrationTests: XCTestCase {
         expect(sut, toRetrieve: .empty)
     }
 
+    func test_retrieve_deliversFeedInsertedOnAnotherInstance() throws {
+        let storeToInsert = try makeSUT()
+        let storeToLoad = try makeSUT()
+        let feed = uniqueImageFeed()
+        let timestamp = Date()
+
+        insert((feed.local, timestamp), to: storeToInsert)
+
+        expect(storeToLoad, toRetrieve: .found(feed: feed.local, timestamp: timestamp))
+    }
+
     // - MARK: Helpers
 
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) throws -> FeedStore {
