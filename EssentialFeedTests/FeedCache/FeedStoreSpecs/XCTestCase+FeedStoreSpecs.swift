@@ -139,17 +139,23 @@ extension FeedStoreSpecs where Self: XCTestCase {
         return deletionError
     }
 
+    func expect(_ sut: FeedStore, toRetrieveTwice expectedResult: RetrieveCachedFeedResult, file: StaticString = #filePath, line: UInt = #line) {
+        expect(sut, toRetrieve: expectedResult, file: file, line: line)
+        expect(sut, toRetrieve: expectedResult, file: file, line: line)
+    }
+
     func expect(_ sut: FeedStore, toRetrieve expectedResult: RetrieveCachedFeedResult, file: StaticString = #filePath, line: UInt = #line) {
-        let exp = expectation(description: "Wait for cache retrieve")
+        let exp = expectation(description: "Wait for cache retrieval")
 
         sut.retrieve { retrievedResult in
             switch (expectedResult, retrievedResult) {
-            case (.empty, .empty), (.failure, .failure):
+            case (.empty, .empty),
+                 (.failure, .failure):
                 break
 
-            case let (.found(expectedFoundFeed, expectedFoundTimestamp), .found(retrievedFoundFeed, retrievedFoundTimestamp)):
-                XCTAssertEqual(expectedFoundFeed, retrievedFoundFeed, file: file, line: line)
-                XCTAssertEqual(expectedFoundTimestamp, retrievedFoundTimestamp, file: file, line: line)
+            case let (.found(expectedFeed, expectedTimestamp), .found(retrievedFeed, retrievedTimestamp)):
+                XCTAssertEqual(retrievedFeed, expectedFeed, file: file, line: line)
+                XCTAssertEqual(retrievedTimestamp, expectedTimestamp, file: file, line: line)
 
             default:
                 XCTFail("Expected to retrieve \(expectedResult), got \(retrievedResult) instead", file: file, line: line)
@@ -159,10 +165,5 @@ extension FeedStoreSpecs where Self: XCTestCase {
         }
 
         wait(for: [exp], timeout: 1.0)
-    }
-
-    func expect(_ sut: FeedStore, toRetrieveTwice expectedResult: RetrieveCachedFeedResult, file: StaticString = #filePath, line: UInt = #line) {
-        expect(sut, toRetrieve: expectedResult)
-        expect(sut, toRetrieve: expectedResult)
     }
 }
