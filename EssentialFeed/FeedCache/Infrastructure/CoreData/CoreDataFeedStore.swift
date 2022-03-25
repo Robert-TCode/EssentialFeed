@@ -41,15 +41,11 @@ public final class CoreDataFeedStore: FeedStore {
 
 	public func retrieve(completion: @escaping RetrievalCompletion) {
 		perform { context in
-			do {
-				if let cache = try ManagedCache.find(in: context) {
-					completion(.found(feed: cache.localFeed, timestamp: cache.timestamp))
-				} else {
-					completion(.empty)
-				}
-			} catch {
-				completion(.failure(error))
-			}
+            completion(Result {
+                try ManagedCache.find(in: context).map {
+                    return CachedFeed(feed: $0.localFeed, timestamp: $0.timestamp)
+                }
+            })
 		}
 	}
 
@@ -61,10 +57,10 @@ public final class CoreDataFeedStore: FeedStore {
 				managedCache.feed = ManagedFeedImage.images(from: feed, in: context)
 
 				try context.save()
-				completion(nil)
+                completion(.success(()))
 			} catch {
 				context.rollback()
-				completion(error)
+                completion(.failure(error))
 			}
 		}
 	}
@@ -76,10 +72,10 @@ public final class CoreDataFeedStore: FeedStore {
 					.map(context.delete)
 					.map(context.save)
 
-				completion(nil)
+                completion(.success(()))
 			} catch {
 				context.rollback()
-				completion(error)
+                completion(.failure(error))
 			}
 		}
 	}
