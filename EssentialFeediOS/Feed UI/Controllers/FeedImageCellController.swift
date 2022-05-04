@@ -49,7 +49,7 @@ final class FeedImageCellController {
         task = imageLoader.loadImageData(from: model.URL) { _ in }
     }
 
-    deinit {
+    func cancelLoad() {
         task?.cancel()
     }
 }
