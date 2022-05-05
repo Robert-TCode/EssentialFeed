@@ -16,8 +16,6 @@ protocol FeedView {
 }
 
 final class FeedPresenter {
-    typealias Observer<T> = (T) -> Void
-
     private let feedLoader: FeedLoader
 
     init(feedLoader: FeedLoader) {
@@ -25,7 +23,7 @@ final class FeedPresenter {
     }
 
     var feedView: FeedView?
-    weak var loadingView: FeedLoadingView?
+    var loadingView: FeedLoadingView?
 
     func loadFeed() {
         loadingView?.display(isLoading: true)
