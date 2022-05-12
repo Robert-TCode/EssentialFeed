@@ -5,6 +5,7 @@
 //  Created by TCode on 5/5/22.
 //
 
+import Foundation
 import EssentialFeed
 
 protocol FeedLoadingView: AnyObject {
@@ -25,7 +26,10 @@ final class FeedPresenter {
     }
 
     static var title: String {
-        "My Feed"
+        NSLocalizedString("FeedView.Title",
+                          tableName: "Feed",
+                          bundle: Bundle(for: FeedPresenter.self),
+                          comment: "Title for the feed view ")
     }
     
     func didStartLoadingFeed() {
