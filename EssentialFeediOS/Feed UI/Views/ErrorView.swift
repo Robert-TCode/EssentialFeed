@@ -46,6 +46,11 @@ public final class ErrorView: UIView {
         label.backgroundColor = .systemOrange
         label.numberOfLines = 2
         label.adjustsFontForContentSizeCategory = true
+
+        let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.hideMessageAnimated))
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(labelTap)
+
         return label
     }()
 
@@ -67,7 +72,7 @@ public final class ErrorView: UIView {
         }
     }
 
-    private func hideMessageAnimated() {
+    @objc private func hideMessageAnimated() {
         UIView.animate(
             withDuration: 0.25,
             animations: { self.alpha = 0 },
