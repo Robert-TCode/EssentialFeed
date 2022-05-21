@@ -1,1 +1,2 @@
 "FeedView.Title" = "My Feed"; 
+"FEED_VIEW_CONNECTION_ERROR" = "Couldn't connect to server";
