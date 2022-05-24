@@ -144,18 +144,18 @@ final class RemoteFeedImageDataLoaderTests: XCTestCase {
     func test_loadImageDataFromURL_doesNotDeliverResultAfterCancellingTask() {
         let (sut, client) = makeSUT()
         let nonEmptyData = Data("non-empty data".utf8)
-        
+
         var received = [FeedImageDataLoader.Result]()
         let task = sut.loadImageData(from: anyURL()) { received.append($0) }
         task.cancel()
-        
+
         client.complete(withStatusCode: 404, data: anyData())
         client.complete(withStatusCode: 200, data: nonEmptyData)
         client.complete(with: anyNSError())
-        
+
         XCTAssertTrue(received.isEmpty, "Expected no received results after cancelling task")
     }
-    
+
     func test_loadImageDataFromURL_doesNotDeliverResultAfterSUTInstanceHasBeenDeallocated() {
         let client = HTTPClientSpy()
         var sut: RemoteFeedImageDataLoader? = RemoteFeedImageDataLoader(client: client)
@@ -177,10 +177,6 @@ final class RemoteFeedImageDataLoaderTests: XCTestCase {
         trackForMemoryLeaks(sut, file: file, line: line)
         trackForMemoryLeaks(client, file: file, line: line)
         return (sut, client)
-    }
-
-    private func anyData() -> Data {
-        return Data("any data".utf8)
     }
 
     private func failure(_ error: RemoteFeedImageDataLoader.Error) -> FeedImageDataLoader.Result {
