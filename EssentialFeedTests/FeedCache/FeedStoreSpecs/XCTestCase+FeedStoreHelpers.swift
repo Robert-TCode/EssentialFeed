@@ -50,11 +50,9 @@ extension XCTestCase {
             case (.success(.none), .success(.none)),
                  (.failure, .failure):
                 break
-
             case let (.success(.some(expectedCache)), .success(.some(retrievedCache))):
                 XCTAssertEqual(retrievedCache.feed, expectedCache.feed, file: file, line: line)
                 XCTAssertEqual(retrievedCache.timestamp, expectedCache.timestamp, file: file, line: line)
-
             default:
                 XCTFail("Expected to retrieve \(expectedResult), got \(retrievedResult) instead", file: file, line: line)
             }
