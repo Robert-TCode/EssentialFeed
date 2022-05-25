@@ -154,7 +154,6 @@ class EssentialFeedCacheIntegrationTests: XCTestCase {
             switch result {
             case let .success(loadedFeed):
                 XCTAssertEqual(loadedFeed, expectedFeed, file: file, line: line)
-
             case let .failure(error):
                 XCTFail("Expected successful feed result, got \(error) instead", file: file, line: line)
             }
@@ -181,7 +180,6 @@ class EssentialFeedCacheIntegrationTests: XCTestCase {
             switch result {
             case let .success(loadedData):
                 XCTAssertEqual(loadedData, expectedData, file: file, line: line)
-
             case let .failure(error):
                 XCTFail("Expected successful image data result, got \(error) instead", file: file, line: line)
             }
