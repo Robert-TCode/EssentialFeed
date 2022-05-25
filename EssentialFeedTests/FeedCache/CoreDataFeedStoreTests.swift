@@ -197,12 +197,3 @@ class CoreDataFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
             .appendingPathComponent("\(type(of: self)).store")
     }
 }
-
-extension CoreDataFeedStore.ModelNotFound: CustomStringConvertible {
-    public var description: String {
-        "Core Data Model '\(modelName).xcdatamodeld' not found. You need to create it in the production target."
-    }
-}
-
-
-
