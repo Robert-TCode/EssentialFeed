@@ -51,6 +51,7 @@ public final class FeedImageCell: UITableViewCell {
         let stack = UIStackView(frame: .zero)
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
+        stack.spacing = 8
         stack.addArrangedSubview(locationContainer)
         stack.addArrangedSubview(feedImageContainer)
         stack.addArrangedSubview(descriptionLabel)
@@ -60,6 +61,10 @@ public final class FeedImageCell: UITableViewCell {
         NSLayoutConstraint.activate([
             feedImageContainer.heightAnchor.constraint(equalTo: feedImageContainer.widthAnchor)
         ])
+
+        addSubview(stack)
+        stack.pinToSuperview(constant: 16)
+
     }
 
     // MARK: Subviews
@@ -73,23 +78,29 @@ public final class FeedImageCell: UITableViewCell {
     private(set) public lazy var feedImageContainer: UIView = {
         let view = UIView(frame: .zero)
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 16
         return view
     }()
 
     private lazy var locationImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.frame.size.width = 24
-        imageView.frame.size.height = 24
-        imageView.image = UIImage(systemName: "mappin")
+        imageView.image = UIImage(named: "pin", in: Bundle(for: Self.self), compatibleWith: nil)
         imageView.contentMode = .scaleAspectFit
+
+        NSLayoutConstraint.activate([
+            imageView.heightAnchor.constraint(equalToConstant: 20),
+            imageView.widthAnchor.constraint(equalToConstant: 20)
+        ])
+
         return imageView
     }()
 
     private(set) public lazy var feedImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
 
@@ -125,14 +136,14 @@ public final class FeedImageCell: UITableViewCell {
 }
 
 extension UIView {
-    func pinToSuperview() {
+    func pinToSuperview(constant: CGFloat = 0) {
         guard let superview = superview else { return }
 
         NSLayoutConstraint.activate([
-            self.topAnchor.constraint(equalTo: superview.topAnchor),
-            self.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            self.trailingAnchor.constraint(equalTo: superview.trailingAnchor),
-            self.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
+            self.topAnchor.constraint(equalTo: superview.topAnchor, constant: constant),
+            self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: constant),
+            self.trailingAnchor.constraint(equalTo: superview.trailingAnchor, constant: -constant),
+            self.bottomAnchor.constraint(equalTo: superview.bottomAnchor, constant: -constant)
         ])
     }
 

@@ -26,6 +26,7 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
 
         refreshControl = refreshController?.view
 
+        tableView.separatorStyle = .none
         tableView.prefetchDataSource = self
         tableView.register(FeedImageCell.self, forCellReuseIdentifier: "FeedImageCell")
         refreshController?.refresh()
