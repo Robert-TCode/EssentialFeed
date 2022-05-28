@@ -25,6 +25,7 @@
 		AAE296EC28426B9700885482 /* FeedLoaderCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296EB28426B9700885482 /* FeedLoaderCacheDecoratorTests.swift */; };
 		AAE296EE28426D3B00885482 /* FeedLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296ED28426D3B00885482 /* FeedLoaderStub.swift */; };
 		AAE296F028426DD200885482 /* FeedLoader+XCTestCaseHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296EF28426DD200885482 /* FeedLoader+XCTestCaseHelpers.swift */; };
+		AAE296F428427B5C00885482 /* FeedLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296F328427B5C00885482 /* FeedLoaderCacheDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		AAE296EB28426B9700885482 /* FeedLoaderCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		AAE296ED28426D3B00885482 /* FeedLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderStub.swift; sourceTree = "<group>"; };
 		AAE296EF28426DD200885482 /* FeedLoader+XCTestCaseHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedLoader+XCTestCaseHelpers.swift"; sourceTree = "<group>"; };
+		AAE296F328427B5C00885482 /* FeedLoaderCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderCacheDecorator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +122,7 @@
 				AA96AB2F283EA16C003559B5 /* AppDelegate.swift */,
 				AAE296E428421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift */,
 				AAE296E028421A1B00885482 /* FeedLoaderWithFallbackComposite.swift */,
+				AAE296F328427B5C00885482 /* FeedLoaderCacheDecorator.swift */,
 				AA96AB31283EA16C003559B5 /* SceneDelegate.swift */,
 				AA96AB38283EA16D003559B5 /* Assets.xcassets */,
 				AA96AB3A283EA16D003559B5 /* LaunchScreen.storyboard */,
@@ -264,6 +267,7 @@
 				AAE296E528421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */,
 				AA96AB30283EA16C003559B5 /* AppDelegate.swift in Sources */,
 				AAE296E128421A1B00885482 /* FeedLoaderWithFallbackComposite.swift in Sources */,
+				AAE296F428427B5C00885482 /* FeedLoaderCacheDecorator.swift in Sources */,
 				AA96AB32283EA16C003559B5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
