@@ -26,6 +26,7 @@
 		AAE296EE28426D3B00885482 /* FeedLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296ED28426D3B00885482 /* FeedLoaderStub.swift */; };
 		AAE296F028426DD200885482 /* FeedLoader+XCTestCaseHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296EF28426DD200885482 /* FeedLoader+XCTestCaseHelpers.swift */; };
 		AAE296F428427B5C00885482 /* FeedLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296F328427B5C00885482 /* FeedLoaderCacheDecorator.swift */; };
+		AAE296F628427CF500885482 /* FeedImageDataLoaderCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296F528427CF500885482 /* FeedImageDataLoaderCacheDecoratorTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		AAE296ED28426D3B00885482 /* FeedLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderStub.swift; sourceTree = "<group>"; };
 		AAE296EF28426DD200885482 /* FeedLoader+XCTestCaseHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedLoader+XCTestCaseHelpers.swift"; sourceTree = "<group>"; };
 		AAE296F328427B5C00885482 /* FeedLoaderCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderCacheDecorator.swift; sourceTree = "<group>"; };
+		AAE296F528427CF500885482 /* FeedImageDataLoaderCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderCacheDecoratorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 		AA96AB45283EA16D003559B5 /* EssentialAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				AAE296F528427CF500885482 /* FeedImageDataLoaderCacheDecoratorTests.swift */,
 				AAE296E228421AA000885482 /* FeedImageDataLoaderWithFallbackCompositeTests.swift */,
 				AAE296EB28426B9700885482 /* FeedLoaderCacheDecoratorTests.swift */,
 				AAE296DE284212C400885482 /* FeedLoaderWithFallbackCompositeTests.swift */,
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AAE296F028426DD200885482 /* FeedLoader+XCTestCaseHelpers.swift in Sources */,
+				AAE296F628427CF500885482 /* FeedImageDataLoaderCacheDecoratorTests.swift in Sources */,
 				AAE296EA28421DF300885482 /* SharedTestHelpers.swift in Sources */,
 				AAE296EC28426B9700885482 /* FeedLoaderCacheDecoratorTests.swift in Sources */,
 				AAE296E328421AA000885482 /* FeedImageDataLoaderWithFallbackCompositeTests.swift in Sources */,
