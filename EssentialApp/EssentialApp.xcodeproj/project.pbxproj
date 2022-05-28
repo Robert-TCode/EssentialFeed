@@ -19,6 +19,7 @@
 		AAE296DF284212C400885482 /* FeedLoaderWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296DE284212C400885482 /* FeedLoaderWithFallbackCompositeTests.swift */; };
 		AAE296E128421A1B00885482 /* FeedLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296E028421A1B00885482 /* FeedLoaderWithFallbackComposite.swift */; };
 		AAE296E328421AA000885482 /* FeedImageDataLoaderWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296E228421AA000885482 /* FeedImageDataLoaderWithFallbackCompositeTests.swift */; };
+		AAE296E528421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296E428421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		AAE296DE284212C400885482 /* FeedLoaderWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		AAE296E028421A1B00885482 /* FeedLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
 		AAE296E228421AA000885482 /* FeedImageDataLoaderWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
+		AAE296E428421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			children = (
 				AA96AB3D283EA16D003559B5 /* Info.plist */,
 				AA96AB2F283EA16C003559B5 /* AppDelegate.swift */,
+				AAE296E428421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift */,
 				AAE296E028421A1B00885482 /* FeedLoaderWithFallbackComposite.swift */,
 				AA96AB31283EA16C003559B5 /* SceneDelegate.swift */,
 				AA96AB38283EA16D003559B5 /* Assets.xcassets */,
@@ -235,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE296E528421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */,
 				AA96AB30283EA16C003559B5 /* AppDelegate.swift in Sources */,
 				AAE296E128421A1B00885482 /* FeedLoaderWithFallbackComposite.swift in Sources */,
 				AA96AB32283EA16C003559B5 /* SceneDelegate.swift in Sources */,
