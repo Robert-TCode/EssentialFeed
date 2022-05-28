@@ -21,6 +21,7 @@
 		AAE296E328421AA000885482 /* FeedImageDataLoaderWithFallbackCompositeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296E228421AA000885482 /* FeedImageDataLoaderWithFallbackCompositeTests.swift */; };
 		AAE296E528421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296E428421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift */; };
 		AAE296E828421D8B00885482 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296E728421D8B00885482 /* XCTestCase+MemoryLeakTracking.swift */; };
+		AAE296EA28421DF300885482 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE296E928421DF300885482 /* SharedTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		AAE296E228421AA000885482 /* FeedImageDataLoaderWithFallbackCompositeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderWithFallbackCompositeTests.swift; sourceTree = "<group>"; };
 		AAE296E428421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderWithFallbackComposite.swift; sourceTree = "<group>"; };
 		AAE296E728421D8B00885482 /* XCTestCase+MemoryLeakTracking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+MemoryLeakTracking.swift"; sourceTree = "<group>"; };
+		AAE296E928421DF300885482 /* SharedTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedTestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				AAE296E728421D8B00885482 /* XCTestCase+MemoryLeakTracking.swift */,
+				AAE296E928421DF300885482 /* SharedTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAE296EA28421DF300885482 /* SharedTestHelpers.swift in Sources */,
 				AAE296E328421AA000885482 /* FeedImageDataLoaderWithFallbackCompositeTests.swift in Sources */,
 				AAE296DF284212C400885482 /* FeedLoaderWithFallbackCompositeTests.swift in Sources */,
 				AAE296E828421D8B00885482 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
