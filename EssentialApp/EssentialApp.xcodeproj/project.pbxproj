@@ -128,8 +128,8 @@
 			children = (
 				AA96AB3D283EA16D003559B5 /* Info.plist */,
 				AA96AB2F283EA16C003559B5 /* AppDelegate.swift */,
-				AAE296E428421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift */,
 				AAE296FD2842805100885482 /* FeedImageDataLoaderCacheDecorator.swift */,
+				AAE296E428421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift */,
 				AAE296F328427B5C00885482 /* FeedLoaderCacheDecorator.swift */,
 				AAE296E028421A1B00885482 /* FeedLoaderWithFallbackComposite.swift */,
 				AA96AB31283EA16C003559B5 /* SceneDelegate.swift */,
