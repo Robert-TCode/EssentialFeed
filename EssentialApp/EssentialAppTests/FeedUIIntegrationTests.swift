@@ -4,12 +4,13 @@
 //
 //  Created by TCode on 27/4/22.
 //
-
-import XCTest
+ 
+import EssentialApp
 import EssentialFeed
 import EssentialFeediOS
+import XCTest
 
-class FeedUIIntegrationTests: XCTestCase {
+final class FeedUIIntegrationTests: XCTestCase {
 
     func test_feedView_hasTitle() {
         let (sut, _) = makeSUT()
