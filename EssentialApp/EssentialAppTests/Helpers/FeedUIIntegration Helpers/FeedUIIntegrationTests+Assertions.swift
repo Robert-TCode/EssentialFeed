@@ -5,10 +5,9 @@
 //  Created by TCode on 12/5/22.
 //
 
-import Foundation
-import XCTest
 import EssentialFeed
 import EssentialFeediOS
+import XCTest
 
 extension FeedUIIntegrationTests {
     func assertThat(_ sut: FeedViewController, hasViewConfiguredFor image: FeedImage, at index: Int, file: StaticString = #file, line: UInt = #line) {

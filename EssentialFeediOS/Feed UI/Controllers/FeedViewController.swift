@@ -12,11 +12,11 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
     private var refreshController: FeedRefreshViewController?
     public let errorView = ErrorView()
     
-    var tableModel = [FeedImageCellController]() {
+    private var tableModel = [FeedImageCellController]() {
         didSet { tableView.reloadData() }
     }
 
-    convenience init(refreshController: FeedRefreshViewController) {
+    public convenience init(refreshController: FeedRefreshViewController) {
         self.init()
         self.refreshController = refreshController
     }
@@ -30,6 +30,10 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
         tableView.prefetchDataSource = self
         tableView.register(FeedImageCell.self, forCellReuseIdentifier: "FeedImageCell")
         refreshController?.refresh()
+    }
+
+    public func display(_ cellControllers: [FeedImageCellController]) {
+        tableModel = cellControllers
     }
 
     public override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
