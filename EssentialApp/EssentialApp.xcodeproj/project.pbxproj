@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		AA7AA57C284B62E90094F04B /* DebuggingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7AA57B284B62E90094F04B /* DebuggingSceneDelegate.swift */; };
 		AA7AA5A6284B70CD0094F04B /* FeedViewAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7AA5A1284B70CD0094F04B /* FeedViewAdapter.swift */; };
 		AA7AA5A7284B70CD0094F04B /* FeedLoaderPresentationAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7AA5A3284B70CD0094F04B /* FeedLoaderPresentationAdapter.swift */; };
 		AA7AA5A8284B70CD0094F04B /* FeedUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7AA5A4284B70CD0094F04B /* FeedUIComposer.swift */; };
@@ -75,7 +74,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		AA7AA57B284B62E90094F04B /* DebuggingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingSceneDelegate.swift; sourceTree = "<group>"; };
 		AA7AA5A0284B70CD0094F04B /* FeedImageDataLoaderPresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoaderPresentationAdapter.swift; sourceTree = "<group>"; };
 		AA7AA5A1284B70CD0094F04B /* FeedViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewAdapter.swift; sourceTree = "<group>"; };
 		AA7AA5A2284B70CD0094F04B /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				AA96AB2F283EA16C003559B5 /* AppDelegate.swift */,
-				AA7AA57B284B62E90094F04B /* DebuggingSceneDelegate.swift */,
 				AA96AB31283EA16C003559B5 /* SceneDelegate.swift */,
 			);
 			path = Root;
@@ -368,7 +365,6 @@
 				AAE296E128421A1B00885482 /* FeedLoaderWithFallbackComposite.swift in Sources */,
 				AAE296FE2842805100885482 /* FeedImageDataLoaderCacheDecorator.swift in Sources */,
 				AAE296F428427B5C00885482 /* FeedLoaderCacheDecorator.swift in Sources */,
-				AA7AA57C284B62E90094F04B /* DebuggingSceneDelegate.swift in Sources */,
 				AA96AB32283EA16C003559B5 /* SceneDelegate.swift in Sources */,
 				AA7AA5AA284B70CD0094F04B /* WeakRefVirtualProxy.swift in Sources */,
 				AA7AA5A8284B70CD0094F04B /* FeedUIComposer.swift in Sources */,
