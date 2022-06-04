@@ -25,7 +25,9 @@ class HTTPClientStub: HTTPClient {
         completion(stub(url))
         return Task()
     }
+}
 
+extension HTTPClientStub {
     static var offline: HTTPClientStub {
         HTTPClientStub(stub: { _ in .failure(NSError(domain: "offline", code: 0)) })
     }
@@ -33,9 +35,9 @@ class HTTPClientStub: HTTPClient {
     static func online(_ stub: @escaping (URL) -> (Data, HTTPURLResponse)) -> HTTPClientStub {
         HTTPClientStub { url in .success(stub(url)) }
     }
+}
 
-    // MARK: - Helpers
-
+extension HTTPClientStub {
     static func successfulResponse(for url: URL) -> (Data, HTTPURLResponse) {
         let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
         return (makeData(for: url), response)

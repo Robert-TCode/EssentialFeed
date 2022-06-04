@@ -37,7 +37,9 @@ class InMemoryFeedStore: FeedStore, FeedImageDataStore {
     func retrieve(dataForURL url: URL, completion: @escaping (FeedImageDataStore.RetrievalResult) -> Void) {
         completion(.success(feedImageDataCache[url]))
     }
+}
 
+extension InMemoryFeedStore {
     static var empty: InMemoryFeedStore {
         InMemoryFeedStore()
     }
