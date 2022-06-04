@@ -13,24 +13,24 @@ import XCTest
 class FeedAcceptanceTests: XCTestCase {
 
     func test_onLaunch_displaysRemoteFeedWhenCustomerHasConnectivity() {
-        let feed = launch(httpClient: .online(response), store: .empty)
+        let feed = launch(httpClient: .online(HTTPClientStub.successfulResponse), store: .empty)
 
         XCTAssertEqual(feed.numberOfRenderedFeedImageViews(), 2)
-        XCTAssertEqual(feed.renderedFeedImageData(at: 0), makeImageData())
-        XCTAssertEqual(feed.renderedFeedImageData(at: 1), makeImageData())
+        XCTAssertEqual(feed.renderedFeedImageData(at: 0), HTTPClientStub.makeImageData())
+        XCTAssertEqual(feed.renderedFeedImageData(at: 1), HTTPClientStub.makeImageData())
     }
 
     func test_onLaunch_displaysCachedRemoteFeedWhenCustomerHasNoConnectivity() {
         let sharedStore = InMemoryFeedStore.empty
-        let onlineFeed = launch(httpClient: .online(response), store: sharedStore)
+        let onlineFeed = launch(httpClient: .online(HTTPClientStub.successfulResponse), store: sharedStore)
         onlineFeed.simulateFeedImageViewVisible(at: 0)
         onlineFeed.simulateFeedImageViewVisible(at: 1)
 
         let offlineFeed = launch(httpClient: .offline, store: sharedStore)
 
         XCTAssertEqual(offlineFeed.numberOfRenderedFeedImageViews(), 2)
-        XCTAssertEqual(offlineFeed.renderedFeedImageData(at: 0), makeImageData())
-        XCTAssertEqual(offlineFeed.renderedFeedImageData(at: 1), makeImageData())
+        XCTAssertEqual(offlineFeed.renderedFeedImageData(at: 0), HTTPClientStub.makeImageData())
+        XCTAssertEqual(offlineFeed.renderedFeedImageData(at: 1), HTTPClientStub.makeImageData())
     }
 
     func test_onLaunch_displaysEmptyFeedWhenCustomerHasNoConnectivityAndNoCache() {
@@ -72,61 +72,6 @@ class FeedAcceptanceTests: XCTestCase {
     private func enterBackground(with store: InMemoryFeedStore) {
         let sut = SceneDelegate(httpClient: HTTPClientStub.offline, store: store)
         sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
-    }
-
-    // MARK: HTTPClientStub
-
-    private class HTTPClientStub: HTTPClient {
-        private class Task: HTTPClientTask {
-            func cancel() {}
-        }
-
-        typealias ResultForURLRequest = (URL) -> HTTPClient.Result
-
-        private let stub: ResultForURLRequest
-
-        init(stub: @escaping ResultForURLRequest) {
-            self.stub = stub
-        }
-
-        func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
-            completion(stub(url))
-            return Task()
-        }
-
-        static var offline: HTTPClientStub {
-            HTTPClientStub(stub: { _ in .failure(NSError(domain: "offline", code: 0)) })
-        }
-
-        static func online(_ stub: @escaping (URL) -> (Data, HTTPURLResponse)) -> HTTPClientStub {
-            HTTPClientStub { url in .success(stub(url)) }
-        }
-    }
-
-    private func response(for url: URL) -> (Data, HTTPURLResponse) {
-        let response = HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!
-        return (makeData(for: url), response)
-    }
-
-    private func makeData(for url: URL) -> Data {
-        switch url.absoluteString {
-        case "http://image.com":
-            return makeImageData()
-
-        default:
-            return makeFeedData()
-        }
-    }
-
-    private func makeImageData() -> Data {
-        return UIImage.make(withColor: .red).pngData()!
-    }
-
-    private func makeFeedData() -> Data {
-        return try! JSONSerialization.data(withJSONObject: ["items": [
-            ["id": UUID().uuidString, "image": "http://image.com"],
-            ["id": UUID().uuidString, "image": "http://image.com"]
-        ]])
     }
 
     // MARK: InMemoryFeedStore
