@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let remoteUrl = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
 
-        let remoteClient = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+        let remoteClient = makeRemoteClient()
         let remoteFeedLoader = RemoteFeedLoader(url: remoteUrl, client: remoteClient)
         let remoteImageLoader = RemoteFeedImageDataLoader(client: remoteClient)
 
@@ -47,6 +47,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = feedViewController
     }
 
+    private func makeRemoteClient() -> HTTPClient {
+        switch UserDefaults.standard.string(forKey: "-connectivity") {
+        case "offline":
+            return AlwaysFailingHTTPClient()
+        default:
+            return URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
+        }
+    }
+
     func sceneDidDisconnect(_ scene: UIScene) {}
 
     func sceneDidBecomeActive(_ scene: UIScene) {}
@@ -58,3 +67,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneDidEnterBackground(_ scene: UIScene) {}
 }
 
+private class AlwaysFailingHTTPClient: HTTPClient {
+
+    private class Task: HTTPClientTask {
+        func cancel() {}
+    }
+
+    func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) -> HTTPClientTask {
+        completion(.failure(NSError(domain: "offline", code: 0)))
+        return Task()
+    }
+}
