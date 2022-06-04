@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		AA7AA573284B57540094F04B /* EssentialAppUIAcceptanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7AA572284B57540094F04B /* EssentialAppUIAcceptanceTests.swift */; };
+		AA7AA57C284B62E90094F04B /* DebuggingSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7AA57B284B62E90094F04B /* DebuggingSceneDelegate.swift */; };
 		AA96AB30283EA16C003559B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA96AB2F283EA16C003559B5 /* AppDelegate.swift */; };
 		AA96AB32283EA16C003559B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA96AB31283EA16C003559B5 /* SceneDelegate.swift */; };
 		AA96AB37283EA16C003559B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA96AB35283EA16C003559B5 /* Main.storyboard */; };
@@ -68,6 +69,7 @@
 /* Begin PBXFileReference section */
 		AA7AA570284B57540094F04B /* EssentialAppUIAcceptanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialAppUIAcceptanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA7AA572284B57540094F04B /* EssentialAppUIAcceptanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialAppUIAcceptanceTests.swift; sourceTree = "<group>"; };
+		AA7AA57B284B62E90094F04B /* DebuggingSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingSceneDelegate.swift; sourceTree = "<group>"; };
 		AA96AB2C283EA16C003559B5 /* EssentialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA96AB2F283EA16C003559B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA96AB31283EA16C003559B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,16 @@
 			path = EssentialAppUIAcceptanceTests;
 			sourceTree = "<group>";
 		};
+		AA7AA57D284B63070094F04B /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				AA96AB2F283EA16C003559B5 /* AppDelegate.swift */,
+				AA7AA57B284B62E90094F04B /* DebuggingSceneDelegate.swift */,
+				AA96AB31283EA16C003559B5 /* SceneDelegate.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
 		AA96AB23283EA16C003559B5 = {
 			isa = PBXGroup;
 			children = (
@@ -154,12 +166,11 @@
 			isa = PBXGroup;
 			children = (
 				AA96AB3D283EA16D003559B5 /* Info.plist */,
-				AA96AB2F283EA16C003559B5 /* AppDelegate.swift */,
+				AA7AA57D284B63070094F04B /* Root */,
 				AAE296FD2842805100885482 /* FeedImageDataLoaderCacheDecorator.swift */,
 				AAE296E428421D1900885482 /* FeedImageDataLoaderWithFallbackComposite.swift */,
 				AAE296F328427B5C00885482 /* FeedLoaderCacheDecorator.swift */,
 				AAE296E028421A1B00885482 /* FeedLoaderWithFallbackComposite.swift */,
-				AA96AB31283EA16C003559B5 /* SceneDelegate.swift */,
 				AA96AB38283EA16D003559B5 /* Assets.xcassets */,
 				AA96AB3A283EA16D003559B5 /* LaunchScreen.storyboard */,
 				AA96AB35283EA16C003559B5 /* Main.storyboard */,
@@ -346,6 +357,7 @@
 				AAE296E128421A1B00885482 /* FeedLoaderWithFallbackComposite.swift in Sources */,
 				AAE296FE2842805100885482 /* FeedImageDataLoaderCacheDecorator.swift in Sources */,
 				AAE296F428427B5C00885482 /* FeedLoaderCacheDecorator.swift in Sources */,
+				AA7AA57C284B62E90094F04B /* DebuggingSceneDelegate.swift in Sources */,
 				AA96AB32283EA16C003559B5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
