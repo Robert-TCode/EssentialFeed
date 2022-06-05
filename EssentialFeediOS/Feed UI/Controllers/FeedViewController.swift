@@ -26,6 +26,7 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
 
         refreshControl = refreshController?.view
 
+        tableView.backgroundColor = .systemBackground
         tableView.tableHeaderView = errorView
         tableView.separatorStyle = .none
         tableView.prefetchDataSource = self
