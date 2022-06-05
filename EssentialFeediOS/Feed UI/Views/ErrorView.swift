@@ -18,7 +18,7 @@ public final class ErrorView: UIView {
     }
 
     public override init(frame: CGRect) {
-        super.init(frame: .zero)
+        super.init(frame: frame)
 
         setupView()
         alpha = 0
@@ -39,12 +39,13 @@ public final class ErrorView: UIView {
     // MARK: Subviews
 
     private(set) public lazy var label: UILabel = {
-        let label = UILabel(frame: .zero)
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 15)
         label.textColor = .white
         label.backgroundColor = .systemOrange
-        label.numberOfLines = 2
+        label.numberOfLines = 0
+        label.textAlignment = .center
         label.adjustsFontForContentSizeCategory = true
 
         let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.hideMessageAnimated))
