@@ -111,7 +111,7 @@ public final class FeedImageCell: UITableViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("↻", for: .normal)
-        button.backgroundColor = .lightGray
+        button.backgroundColor = .secondarySystemBackground
         button.titleLabel?.textColor = .white
         button.titleLabel?.font = .systemFont(ofSize: 60)
         button.addTarget(self, action: #selector(retryButtonTapped), for: .touchUpInside)
