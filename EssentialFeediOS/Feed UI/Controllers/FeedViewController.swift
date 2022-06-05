@@ -26,10 +26,17 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
 
         refreshControl = refreshController?.view
 
+        tableView.backgroundColor = .systemBackground
+        tableView.tableHeaderView = errorView
         tableView.separatorStyle = .none
         tableView.prefetchDataSource = self
         tableView.register(FeedImageCell.self, forCellReuseIdentifier: "FeedImageCell")
+
         refreshController?.refresh()
+    }
+
+    public override func viewDidLayoutSubviews() {
+        tableView.sizeTableHeaderToFit()
     }
 
     public func display(_ cellControllers: [FeedImageCellController]) {
