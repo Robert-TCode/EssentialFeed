@@ -35,6 +35,14 @@ final class FeedSnapshotTests: XCTestCase {
         record(snapshot: sut.snapshot(), named: "FEED_WITH_ERROR_MESSAGE")
     }
 
+    func test_feedWithFailedImageLoading() {
+        let sut = makeSUT()
+
+        sut.display(feedWithFailedImageLoading())
+
+        record(snapshot: sut.snapshot(), named: "FEED_WITH_FAILED_IMAGE_LOADING")
+    }
+
     // MARK: Helpers
 
     private func makeSUT() -> FeedViewController {
@@ -63,6 +71,21 @@ final class FeedSnapshotTests: XCTestCase {
                 description: "Nature, peace and an excellent canvas on which you can picture your life.",
                 location: "Sibiu, Romania",
                 image: UIImage.make(withColor: .green)
+            )
+        ]
+    }
+
+    private func feedWithFailedImageLoading() -> [ImageStub] {
+        [
+            ImageStub(
+                description: "The fox jumped over the lazy dog.",
+                location: "London, U.K.",
+                image: nil
+            ),
+            ImageStub(
+                description: "Nature, peace and an excellent canvas on which you can picture your life.",
+                location: "Sibiu, Romania",
+                image: nil
             )
         ]
     }
