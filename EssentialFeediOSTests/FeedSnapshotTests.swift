@@ -5,10 +5,11 @@
 //  Created by TCode on 4/6/22.
 //
 
-import XCTest
 import EssentialFeediOS
+import XCTest
+@testable import EssentialFeed
 
-class FeedSnapshotTests: XCTestCase {
+final class FeedSnapshotTests: XCTestCase {
 
     func test_emptyFeed() {
         let sut = makeSUT()
@@ -16,6 +17,14 @@ class FeedSnapshotTests: XCTestCase {
         sut.display(emptyFeed())
 
         record(snapshot: sut.snapshot(), named: "EMPTY_FEED")
+    }
+
+    func test_feedWithContent() {
+        let sut = makeSUT()
+
+        sut.display(feedWithContent())
+
+        record(snapshot: sut.snapshot(), named: "FEED_WITH_CONTENT")
     }
 
     // MARK: Helpers
@@ -33,6 +42,21 @@ class FeedSnapshotTests: XCTestCase {
 
     private func emptyFeed() -> [FeedImageCellController] {
         []
+    }
+
+    private func feedWithContent() -> [ImageStub] {
+        [
+            ImageStub(
+                description: "The fox jumped over the lazy dog.",
+                location: "London, U.K.",
+                image: UIImage.make(withColor: .red)
+            ),
+            ImageStub(
+                description: "Nature, peace and an excellent canvas on which you can picture your life.",
+                location: "Sibiu, Romania",
+                image: UIImage.make(withColor: .green)
+            )
+        ]
     }
 
     private func record(snapshot: UIImage, named name: String, file: StaticString = #file, line: UInt = #line) {
@@ -59,7 +83,6 @@ class FeedSnapshotTests: XCTestCase {
     }
 }
 
-
 extension UIViewController {
     func snapshot() -> UIImage {
         let renderer = UIGraphicsImageRenderer(bounds: view.bounds)
@@ -67,4 +90,37 @@ extension UIViewController {
             view.layer.render(in: action.cgContext)
         }
     }
+}
+
+private extension FeedViewController {
+    func display(_ stubs: [ImageStub]) {
+        let cells: [FeedImageCellController] = stubs.map { stub in
+            let cellController = FeedImageCellController(delegate: stub)
+            stub.controller = cellController
+            return cellController
+        }
+
+        display(cells)
+    }
+}
+
+private class ImageStub: FeedImageCellControllerDelegate {
+    let viewModel: FeedImageViewModel<UIImage>
+    weak var controller: FeedImageCellController?
+
+    init(description: String?, location: String?, image: UIImage?) {
+        viewModel = FeedImageViewModel(
+            description: description,
+            location: location,
+            image: image,
+            isLoading: false,
+            shouldRetry: image == nil
+        )
+    }
+
+    func didRequestImage() {
+        controller?.display(viewModel)
+    }
+
+    func didCancelImageRequest() {}
 }
