@@ -5,6 +5,7 @@
 //  Created by TCode on 25/5/22.
 //
 
+import Combine
 import CoreData
 import EssentialFeed
 import EssentialFeediOS
@@ -20,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private lazy var store: FeedStore & FeedImageDataStore = {
         try! CoreDataFeedStore(
             storeURL: NSPersistentContainer.defaultDirectoryURL()
-                                           .appendingPathComponent("feed-store.sqlite")
+                .appendingPathComponent("feed-store.sqlite")
         )
     }()
 
@@ -42,25 +43,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func configureWindow() {
-        let remoteUrl = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
-
-        let remoteFeedLoader = RemoteFeedLoader(url: remoteUrl, client: httpClient)
-        let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
-
-        let localFeedLoader = LocalFeedLoader(store: store, currentDate: Date.init)
-        let localImageLoader = LocalFeedImageDataLoader(store: store)
-
-        let composedFeedLoader = FeedLoaderWithFallbackComposite(
-            primary: FeedLoaderCacheDecorator(decoratee: remoteFeedLoader, cache: localFeedLoader),
-            fallback: localFeedLoader
-        )
-        let composedImageLoader = FeedImageDataLoaderWithFallbackComposite(
-            primary: FeedImageDataLoaderCacheDecorator(decoratee: remoteImageLoader, cache: localImageLoader),
-            fallback: localImageLoader
-        )
         let feedViewController = FeedUIComposer.feedComposedWith(
-            feedLoader: composedFeedLoader,
-            imageLoader: composedImageLoader
+            feedLoader: makeRemoteFeedLoaderWithLocalFallback,
+            imageLoader: makeLocalImageLoaderWithRemoteFallback
         )
 
         window?.rootViewController = UINavigationController(rootViewController: feedViewController)
@@ -69,5 +54,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillResignActive(_ scene: UIScene) {
         localFeedLoader.validateCache { _ in }
+    }
+
+    // MARK: Helpers
+
+    private func makeRemoteFeedLoaderWithLocalFallback() -> FeedLoader.Publisher {
+        let remoteURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
+        let remoteFeedLoader = RemoteFeedLoader(url: remoteURL, client: httpClient)
+
+        return remoteFeedLoader
+            .loadPublisher()
+            .caching(to: localFeedLoader)
+            .fallback(to: localFeedLoader.loadPublisher)
+    }
+
+    private func makeLocalImageLoaderWithRemoteFallback(url: URL) -> FeedImageDataLoader.Publisher {
+        let remoteImageLoader = RemoteFeedImageDataLoader(client: httpClient)
+        let localImageLoader = LocalFeedImageDataLoader(store: store)
+
+        return localImageLoader
+            .loadImageDataPublisher(from: url)
+            .fallback(to: {
+                remoteImageLoader
+                    .loadImageDataPublisher(from: url)
+                    .caching(to: localImageLoader, using: url)
+            })
     }
 }
