@@ -84,7 +84,7 @@ class LoadImageCommentsFromRemoteUseCaseTests: XCTestCase {
     func test_load_deliversItemsOn2xxHTTPResponseWithJSONItems() {
         let (sut, client) = makeSUT()
 
-        et item1 = makeItem(
+        let item1 = makeItem(
             id: UUID(),
             message: "a message",
             createdAt: (Date(timeIntervalSince1970: 1598627222), "2020-08-28T15:07:02+00:00"),
