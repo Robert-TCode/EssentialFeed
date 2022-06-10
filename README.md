@@ -177,17 +177,6 @@ Given the customer doesn't have connectivity
 
 ![Feed Loading Feature](feed_flowchart.png)
 
-## Architecture
-
-![Feed Loading Feature](overall_feed_architecture.png)
-
-Zoom in - Feed Architecture
-
-![Feed Loading Feature](feed_architecture.png)
-
-Zoom in - Cache Architecture
-
-![Feed Loading Feature](feed_and_image_cache_decorator_architecture.png)
 
 ## Model Specs
 
