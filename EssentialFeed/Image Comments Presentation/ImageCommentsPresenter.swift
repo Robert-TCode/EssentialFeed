@@ -1,23 +1,19 @@
 //
-//  FeedPresenter.swift
+//  ImageCommentsPresenter.swift
 //  EssentialFeed
 //
-//  Created by TCode on 21/5/22.
+//  Created by TCode on 12/6/22.
 //
 
 import Foundation
 
-public protocol FeedView {
-    func display(_ viewModel: FeedViewModel)
-}
-
-public final class FeedPresenter {
+public final class ImageCommentsPresenter {
     public static var title: String {
         NSLocalizedString(
-            "FEED_VIEW_TITLE",
-            tableName: "Feed",
+            "IMAGE_COMMENTS_VIEW_TITLE",
+            tableName: "ImageComments",
             bundle: Bundle(for: Self.self),
-            comment: "Title for the feed view "
+            comment: "Title for the image comments view "
         )
     }
 
