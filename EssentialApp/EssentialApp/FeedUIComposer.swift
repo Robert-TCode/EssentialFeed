@@ -13,7 +13,7 @@ import UIKit
 public final class FeedUIComposer {
     private init() {}
 
-    public static func feedComposedWith(
+    public static func feedComposedWith (
         feedLoader: @escaping () -> AnyPublisher<[FeedImage], Error>,
         imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher
     ) -> FeedViewController {
@@ -21,13 +21,14 @@ public final class FeedUIComposer {
         let refreshController = FeedRefreshViewController(delegate: presentationAdapter)
         let feedController = FeedViewController.makeWith(refreshController: refreshController, title: FeedPresenter.title )
 
-        presentationAdapter.presenter = FeedPresenter(
-            feedView: FeedViewAdapter(
+        presentationAdapter.presenter = LoadResourcePresenter(
+            resourceView: FeedViewAdapter(
                 controller: feedController,
                 imageLoader: imageLoader
             ),
             loadingView: WeakRefVirtualProxy(refreshController),
-            errorView: WeakRefVirtualProxy(feedController)
+            errorView: WeakRefVirtualProxy(feedController),
+            mapper: FeedPresenter.map
         )
 
         return feedController
