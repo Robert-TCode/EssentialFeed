@@ -14,7 +14,7 @@ public protocol CellController {
     func cancelLoad()
 }
 
-final public class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching {
+final public class ListViewController: UITableViewController, UITableViewDataSourcePrefetching {
     public let errorView = ErrorView()
 
     private var refreshController: FeedRefreshViewController?
@@ -86,7 +86,7 @@ final public class FeedViewController: UITableViewController, UITableViewDataSou
     }
 }
 
-extension FeedViewController: ResourceErrorView {
+extension ListViewController: ResourceErrorView {
     public func display(_ viewModel: ResourceErrorViewModel) {
         errorView.message = viewModel.message
     }
