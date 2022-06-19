@@ -1,5 +1,5 @@
 //
-//  FeedRefreshViewController.swift
+//  ListRefreshViewController.swift
 //  EssentialFeediOS
 //
 //  Created by TCode on 3/5/22.
@@ -8,20 +8,12 @@
 import UIKit
 import EssentialFeed
 
-public protocol FeedRefreshViewControllerDelegate {
-    func didRequestFeedRefresh()
-} 
-
-public final class FeedRefreshViewController: NSObject, ResourceLoadingView {
+public final class ListRefreshViewController: NSObject, ResourceLoadingView {
     private(set) lazy var view = loadView()
-    private let delegate: FeedRefreshViewControllerDelegate
-
-    public init(delegate: FeedRefreshViewControllerDelegate) {
-        self.delegate = delegate
-    }
+    public var onRefresh: (() -> Void)?
 
     @objc func refresh() {
-        delegate.didRequestFeedRefresh()
+        onRefresh?()
     }
 
     public func display(_ viewModel: ResourceLoadingViewModel) {

@@ -121,7 +121,7 @@ public final class FeedImageCell: UITableViewCell {
     private(set) public lazy var locationLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 15)
+        label.font = .preferredFont(forTextStyle: .callout)
         label.textColor = .lightGray
         label.numberOfLines = 2
         label.adjustsFontForContentSizeCategory = true
@@ -131,7 +131,7 @@ public final class FeedImageCell: UITableViewCell {
     private(set) public lazy var descriptionLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 16)
+        label.font = .preferredFont(forTextStyle: .body)
         label.textColor = .gray
         label.numberOfLines = 0
         label.adjustsFontForContentSizeCategory = true
