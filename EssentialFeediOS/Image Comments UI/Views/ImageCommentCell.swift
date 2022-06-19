@@ -9,12 +9,6 @@ import UIKit
 
 public final class ImageCommentCell: UITableViewCell {
 
-    var onRetry: (() -> Void)?
-
-    @objc private func retryButtonTapped() {
-        onRetry?()
-    }
-
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         accessibilityIdentifier = "image-comment-cell"
@@ -48,17 +42,6 @@ public final class ImageCommentCell: UITableViewCell {
     }
 
     // MARK: Subviews
-
-    private(set) public lazy var feedImageRetryButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("↻", for: .normal)
-        button.backgroundColor = .secondarySystemBackground
-        button.titleLabel?.textColor = .white
-        button.titleLabel?.font = .systemFont(ofSize: 60)
-        button.addTarget(self, action: #selector(retryButtonTapped), for: .touchUpInside)
-        return button
-    }()
 
     private(set) public lazy var messageLabel: UILabel = {
         let label = UILabel(frame: .zero)
