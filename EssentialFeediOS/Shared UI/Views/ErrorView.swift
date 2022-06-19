@@ -21,7 +21,7 @@ public final class ErrorView: UIView {
         super.init(frame: frame)
 
         setupView()
-        alpha = 0
+        hideMessage()
     }
 
     @available (*, unavailable)
@@ -43,7 +43,7 @@ public final class ErrorView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 15)
         label.textColor = .white
-        label.backgroundColor = .systemOrange
+        label.backgroundColor = .errorBackgroundColor
         label.numberOfLines = 0
         label.textAlignment = .center
         label.adjustsFontForContentSizeCategory = true
@@ -78,7 +78,19 @@ public final class ErrorView: UIView {
             withDuration: 0.25,
             animations: { self.alpha = 0 },
             completion: { completed in
-                if completed { self.label.text = nil }
+                if completed { self.hideMessage() }
             })
+    }
+
+    private func hideMessage() {
+        label.text = nil
+        alpha = 0
+    }
+}
+
+extension UIColor {
+
+    static var errorBackgroundColor: UIColor {
+        UIColor(displayP3Red: 0.99, green: 0.42, blue: 0.41, alpha: 1)
     }
 }
