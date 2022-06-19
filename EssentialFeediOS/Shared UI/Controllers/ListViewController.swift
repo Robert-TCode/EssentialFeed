@@ -25,17 +25,31 @@ final public class ListViewController: UITableViewController, UITableViewDataSou
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-
         refreshControl = refreshController?.view
 
+        configureErrorView()
+
         tableView.backgroundColor = .systemBackground
-        tableView.tableHeaderView = errorView
         tableView.separatorStyle = .none
         tableView.prefetchDataSource = self
         tableView.register(FeedImageCell.self, forCellReuseIdentifier: "FeedImageCell")
         tableView.register(ImageCommentCell.self, forCellReuseIdentifier: "ImageCommentCell")
 
         refreshController?.refresh()
+    }
+
+    private func configureErrorView() {
+        let container = UIView()
+        container.backgroundColor = .clear
+        container.addSubview(errorView)
+        errorView.translatesAutoresizingMaskIntoConstraints = false
+        errorView.pinToSuperview()
+        errorView.onHide = { [weak self] in
+            self?.tableView.beginUpdates()
+            self?.tableView.sizeTableHeaderToFit()
+            self?.tableView.endUpdates()
+        }
+        tableView.tableHeaderView = container
     }
 
     public override func viewDidLayoutSubviews() {

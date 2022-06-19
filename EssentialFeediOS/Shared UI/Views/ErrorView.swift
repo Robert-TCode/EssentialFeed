@@ -7,11 +7,13 @@
 
 import UIKit
 
-public final class ErrorView: UIView {
+public final class ErrorView: UIButton {
     public var message: String? {
-        get { return isVisible ? label.text : nil }
+        get { return isVisible ? title(for: .normal) : nil }
         set { setMessageAnimated(newValue) }
     }
+
+    public var onHide: (() -> Void)?
 
     private var isVisible: Bool {
         return alpha > 0
@@ -32,28 +34,17 @@ public final class ErrorView: UIView {
     // MARK: View SetUp
 
     private func setupView() {
-        addSubview(label)
-        label.pinToSuperview()
+        configuration = Configuration.plain()
+        backgroundColor = .errorBackgroundColor
+        setTitleColor(.white, for: .normal)
+
+        addTarget(self, action: #selector(hideMessageAnimated), for: .touchUpInside)
+
+        titleLabel?.font = .systemFont(ofSize: 15)
+        titleLabel?.numberOfLines = 0
+        titleLabel?.textAlignment = .center
+        titleLabel?.adjustsFontSizeToFitWidth = false
     }
-
-    // MARK: Subviews
-
-    private(set) public lazy var label: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 15)
-        label.textColor = .white
-        label.backgroundColor = .errorBackgroundColor
-        label.numberOfLines = 0
-        label.textAlignment = .center
-        label.adjustsFontForContentSizeCategory = true
-
-        let labelTap = UITapGestureRecognizer(target: self, action: #selector(self.hideMessageAnimated))
-        label.isUserInteractionEnabled = true
-        label.addGestureRecognizer(labelTap)
-
-        return label
-    }()
 
     // MARK: Helpers
 
@@ -66,7 +57,8 @@ public final class ErrorView: UIView {
     }
 
     private func showAnimated(_ message: String) {
-        label.text = message
+        setTitle(message, for: .normal)
+        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
 
         UIView.animate(withDuration: 0.25) {
             self.alpha = 1
@@ -83,8 +75,10 @@ public final class ErrorView: UIView {
     }
 
     private func hideMessage() {
-        label.text = nil
+        setTitle(nil, for: .normal)
         alpha = 0
+        configuration?.contentInsets = NSDirectionalEdgeInsets(top: 9, leading: 0, bottom: -9, trailing: 0)
+        onHide?()
     }
 }
 
