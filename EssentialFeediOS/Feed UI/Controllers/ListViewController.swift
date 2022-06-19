@@ -1,5 +1,5 @@
 //
-//  FeedViewController.swift
+//  ListViewController.swift
 //  EssentialFeediOS
 //
 //  Created by TCode on 27/4/22.
@@ -17,14 +17,14 @@ public protocol CellController {
 final public class ListViewController: UITableViewController, UITableViewDataSourcePrefetching {
     public let errorView = ErrorView()
 
-    private var refreshController: FeedRefreshViewController?
+    private var refreshController: ListRefreshViewController?
     private var loadingControllers = [IndexPath: CellController]()
 
     private var tableModel = [CellController]() {
         didSet { tableView.reloadData() }
     }
 
-    public convenience init(refreshController: FeedRefreshViewController) {
+    public convenience init(refreshController: ListRefreshViewController) {
         self.init()
         self.refreshController = refreshController
     }
