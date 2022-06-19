@@ -25,14 +25,16 @@ final public class ListViewController: UITableViewController, UITableViewDataSou
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        refreshControl = refreshController?.view
 
         configureErrorView()
+        refreshControl = refreshController?.view
+
+        dataSource.defaultRowAnimation = .fade
+        tableView.dataSource = dataSource
+        tableView.prefetchDataSource = self
 
         tableView.backgroundColor = .systemBackground
         tableView.separatorStyle = .none
-        tableView.dataSource = dataSource
-        tableView.prefetchDataSource = self
         tableView.register(FeedImageCell.self, forCellReuseIdentifier: "FeedImageCell")
         tableView.register(ImageCommentCell.self, forCellReuseIdentifier: "ImageCommentCell")
 
