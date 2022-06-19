@@ -56,7 +56,7 @@
 		AA94A6A12856247B007BD404 /* LoadResourcePresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA94A6A02856247B007BD404 /* LoadResourcePresenterTests.swift */; };
 		AA94A6A42856254E007BD404 /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA94A6A32856254E007BD404 /* LoadResourcePresenter.swift */; };
 		AA96AAE72838E1C1003559B5 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA96AAE62838E1C1003559B5 /* ErrorView.swift */; };
-		AA96AAEA2838E4D6003559B5 /* UIRefreshCOntrol+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA96AAE92838E4D6003559B5 /* UIRefreshCOntrol+Helpers.swift */; };
+		AA96AAEA2838E4D6003559B5 /* UIRefreshControl+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA96AAE92838E4D6003559B5 /* UIRefreshControl+Helpers.swift */; };
 		AA96AAED2838E741003559B5 /* FeedPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA96AAEC2838E741003559B5 /* FeedPresenterTests.swift */; };
 		AA96AAF62838F179003559B5 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA96AAF52838F179003559B5 /* FeedPresenter.swift */; };
 		AA96AAF72838F21B003559B5 /* Feed.strings in Resources */ = {isa = PBXBuildFile; fileRef = AA96AAF22838EFF2003559B5 /* Feed.strings */; };
@@ -213,7 +213,7 @@
 		AA94A6A02856247B007BD404 /* LoadResourcePresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenterTests.swift; sourceTree = "<group>"; };
 		AA94A6A32856254E007BD404 /* LoadResourcePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresenter.swift; sourceTree = "<group>"; };
 		AA96AAE62838E1C1003559B5 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
-		AA96AAE92838E4D6003559B5 /* UIRefreshCOntrol+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshCOntrol+Helpers.swift"; sourceTree = "<group>"; };
+		AA96AAE92838E4D6003559B5 /* UIRefreshControl+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+Helpers.swift"; sourceTree = "<group>"; };
 		AA96AAEC2838E741003559B5 /* FeedPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenterTests.swift; sourceTree = "<group>"; };
 		AA96AAF12838EFF2003559B5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Feed.strings; sourceTree = "<group>"; };
 		AA96AAF32838EFF6003559B5 /* ro */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ro; path = ro.lproj/Feed.strings; sourceTree = "<group>"; };
@@ -326,6 +326,43 @@
 			path = "Feed UI";
 			sourceTree = "<group>";
 		};
+		AA367258285F24E3009739FF /* Shared UI */ = {
+			isa = PBXGroup;
+			children = (
+				AA367259285F24EF009739FF /* Controllers */,
+				AA36725A285F2513009739FF /* Views */,
+			);
+			path = "Shared UI";
+			sourceTree = "<group>";
+		};
+		AA367259285F24EF009739FF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AA54E87E28210FCB0009F797 /* ListRefreshViewController.swift */,
+				AA6BE98F2819CCD500C1C2A0 /* ListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		AA36725A285F2513009739FF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA96AAE62838E1C1003559B5 /* ErrorView.swift */,
+				AA36725B285F2546009739FF /* Helpers */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA36725B285F2546009739FF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				AA96AAE92838E4D6003559B5 /* UIRefreshControl+Helpers.swift */,
+				AACB414E282D9615005F8A17 /* UITableView+Dequeueing.swift */,
+				AA7AA5E8284C9FFB0094F04B /* UITableView+HeaderSizing.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		AA3E15B327C8EEC3008DABD0 /* EssentialFeedAPIEndToEndTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,9 +405,9 @@
 		AA54E87B28210DD70009F797 /* Feed UI */ = {
 			isa = PBXGroup;
 			children = (
+				AA96AB67283EA70F003559B5 /* Images.xcassets */,
 				AA54E87C28210DEB0009F797 /* Controllers */,
 				AA54E87D28210DF40009F797 /* Views */,
-				AA96AB67283EA70F003559B5 /* Images.xcassets */,
 			);
 			path = "Feed UI";
 			sourceTree = "<group>";
@@ -379,8 +416,6 @@
 			isa = PBXGroup;
 			children = (
 				AA54E880282112D50009F797 /* FeedImageCellController.swift */,
-				AA54E87E28210FCB0009F797 /* ListRefreshViewController.swift */,
-				AA6BE98F2819CCD500C1C2A0 /* ListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -388,9 +423,7 @@
 		AA54E87D28210DF40009F797 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AA96AAE62838E1C1003559B5 /* ErrorView.swift */,
 				AA6BE9912819D22A00C1C2A0 /* FeedImageCell.swift */,
-				AA7AA5E8284C9FFB0094F04B /* UITableView+HeaderSizing.swift */,
 				AA96AAE82838E46E003559B5 /* Helpers */,
 			);
 			path = Views;
@@ -531,8 +564,6 @@
 			isa = PBXGroup;
 			children = (
 				AACB4150282D974D005F8A17 /* UIImageView+Animations.swift */,
-				AA96AAE92838E4D6003559B5 /* UIRefreshCOntrol+Helpers.swift */,
-				AACB414E282D9615005F8A17 /* UITableView+Dequeueing.swift */,
 				AA7AA5EA284CA1C50094F04B /* UIView+AutoLayout.swift */,
 				AA54E876282065FD0009F797 /* UIView+Shimmering.swift */,
 			);
@@ -660,6 +691,7 @@
 		AAC882BC27F23A82002D4250 /* EssentialFeediOS */ = {
 			isa = PBXGroup;
 			children = (
+				AA367258285F24E3009739FF /* Shared UI */,
 				AA54E87B28210DD70009F797 /* Feed UI */,
 			);
 			path = EssentialFeediOS;
@@ -1084,7 +1116,7 @@
 				AA7AA5E9284C9FFB0094F04B /* UITableView+HeaderSizing.swift in Sources */,
 				AACB4151282D974D005F8A17 /* UIImageView+Animations.swift in Sources */,
 				AA6BE9902819CCD500C1C2A0 /* ListViewController.swift in Sources */,
-				AA96AAEA2838E4D6003559B5 /* UIRefreshCOntrol+Helpers.swift in Sources */,
+				AA96AAEA2838E4D6003559B5 /* UIRefreshControl+Helpers.swift in Sources */,
 				AA6BE9922819D22A00C1C2A0 /* FeedImageCell.swift in Sources */,
 				AA7AA5EB284CA1C50094F04B /* UIView+AutoLayout.swift in Sources */,
 				AA54E881282112D50009F797 /* FeedImageCellController.swift in Sources */,

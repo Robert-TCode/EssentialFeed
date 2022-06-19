@@ -1,5 +1,5 @@
 //
-//  UIRefreshCOntrol+Helpers.swift
+//  UIRefreshControl+Helpers.swift
 //  EssentialFeediOS
 //
 //  Created by TCode on 21/5/22.
