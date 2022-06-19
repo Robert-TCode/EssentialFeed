@@ -26,11 +26,16 @@ final public class ListViewController: UITableViewController, UITableViewDataSou
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        configureErrorView()
-        refreshControl = refreshController?.view
+        configureTableView()
 
+        refreshControl = refreshController?.view
+        refreshController?.refresh()
+    }
+
+    private func configureTableView() {
         dataSource.defaultRowAnimation = .fade
         tableView.dataSource = dataSource
+        tableView.tableHeaderView = errorView.makeContainer()
         tableView.prefetchDataSource = self
 
         tableView.backgroundColor = .systemBackground
@@ -38,17 +43,11 @@ final public class ListViewController: UITableViewController, UITableViewDataSou
         tableView.register(FeedImageCell.self, forCellReuseIdentifier: "FeedImageCell")
         tableView.register(ImageCommentCell.self, forCellReuseIdentifier: "ImageCommentCell")
 
-        refreshController?.refresh()
-    }
-
-    private func configureErrorView() {
-        let container = errorView.makeContainer()
         errorView.onHide = { [weak self] in
             self?.tableView.beginUpdates()
             self?.tableView.sizeTableHeaderToFit()
             self?.tableView.endUpdates()
         }
-        tableView.tableHeaderView = container
     }
 
     public override func viewDidLayoutSubviews() {
