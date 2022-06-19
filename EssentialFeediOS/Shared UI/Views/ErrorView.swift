@@ -40,10 +40,10 @@ public final class ErrorView: UIButton {
 
         addTarget(self, action: #selector(hideMessageAnimated), for: .touchUpInside)
 
-        titleLabel?.font = .systemFont(ofSize: 15)
+        titleLabel?.font = .preferredFont(forTextStyle: .body)
+        titleLabel?.adjustsFontForContentSizeCategory = true
         titleLabel?.numberOfLines = 0
         titleLabel?.textAlignment = .center
-        titleLabel?.adjustsFontSizeToFitWidth = false
     }
 
     // MARK: Helpers
