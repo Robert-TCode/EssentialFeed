@@ -42,11 +42,7 @@ final public class ListViewController: UITableViewController, UITableViewDataSou
     }
 
     private func configureErrorView() {
-        let container = UIView()
-        container.backgroundColor = .clear
-        container.addSubview(errorView)
-        errorView.translatesAutoresizingMaskIntoConstraints = false
-        errorView.pinToSuperview()
+        let container = errorView.makeContainer()
         errorView.onHide = { [weak self] in
             self?.tableView.beginUpdates()
             self?.tableView.sizeTableHeaderToFit()
