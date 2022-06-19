@@ -39,6 +39,7 @@ final public class ListViewController: UITableViewController, UITableViewDataSou
         tableView.separatorStyle = .none
         tableView.prefetchDataSource = self
         tableView.register(FeedImageCell.self, forCellReuseIdentifier: "FeedImageCell")
+        tableView.register(ImageCommentCell.self, forCellReuseIdentifier: "ImageCommentCell")
 
         refreshController?.refresh()
     }

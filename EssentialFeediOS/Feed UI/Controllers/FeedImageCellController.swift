@@ -30,7 +30,7 @@ public final class FeedImageCellController: CellController, ResourceView, Resour
         cell = tableView.dequeueReusableCell()
         cell?.locationContainer.isHidden = !viewModel.hasLocation
         cell?.locationLabel.text = viewModel.location
-        cell? .descriptionLabel.text = viewModel.description
+        cell?.descriptionLabel.text = viewModel.description
         cell?.onRetry = delegate.didRequestImage
 
         delegate.didRequestImage()
