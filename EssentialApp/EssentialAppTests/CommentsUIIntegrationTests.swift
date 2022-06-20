@@ -80,6 +80,32 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
         assertThat(sut, isRendering: [ImageComment]() )
     }
 
+    func test_loadCommentCompletion_doesNotAlterCurrentRenderingStateOnError() {
+        let comment = makeComment()
+        let (sut, loader) = makeSUT()
+
+        sut.loadViewIfNeeded()
+        loader.completeCommentsLoading(with: [comment], at: 0)
+        assertThat(sut, isRendering: [comment])
+
+        sut.simulateUserInitiatedReload()
+        loader.completeCommentsLoadingWithError()
+        assertThat(sut, isRendering: [comment])
+    }
+
+    func test_loadCommentsCompletion_dispatchesFromBackgroundToMainThread() {
+        let (sut, loader) = makeSUT()
+        sut.loadViewIfNeeded()
+ 
+        let exp = expectation(description: "Wait for background queue")
+        DispatchQueue.global().async {
+            loader.completeCommentsLoading(at: 0)
+            exp.fulfill()
+        }
+
+        wait(for: [exp], timeout: 1.0)
+    }
+
     override func test_errorView_doesNotRenderErrorOnLoad() {
         let (sut, _) = makeSUT()
 
@@ -99,32 +125,6 @@ class CommentsUIIntegrationTests: FeedUIIntegrationTests {
 
         sut.simulateUserInitiatedReload()
         XCTAssertEqual(sut.errorMessage, nil)
-    }
-
-    func test_loadCommentCompletion_doesNotAlterCurrentRenderingStateOnError() {
-        let comment = makeComment()
-        let (sut, loader) = makeSUT()
-
-        sut.loadViewIfNeeded()
-        loader.completeCommentsLoading(with: [comment], at: 0)
-        assertThat(sut, isRendering: [comment])
-
-        sut.simulateUserInitiatedReload()
-        loader.completeCommentsLoadingWithError()
-        assertThat(sut, isRendering: [comment])
-    }
-
-    override func test_loadFeedCompletion_dispatchesFromBackgroundToMainThread() {
-        let (sut, loader) = makeSUT()
-        sut.loadViewIfNeeded()
-
-        let exp = expectation(description: "Wait for background queue")
-        DispatchQueue.global().async {
-            loader.completeCommentsLoading(at: 0)
-            exp.fulfill()
-        }
-
-        wait(for: [exp], timeout: 1.0)
     }
 
     override func test_tapOnErrorView_hidesErrorMessage() {
