@@ -41,7 +41,7 @@ public final class FeedUIComposer {
 private extension ListViewController {
     static func makeWith(refreshController: ListRefreshViewController, title: String) -> ListViewController {
         let feedController = ListViewController(refreshController: refreshController)
-        feedController.title = FeedPresenter.title
+        feedController.title = title
         return feedController
     }
 }
