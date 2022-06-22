@@ -49,6 +49,8 @@ extension HTTPClientStub {
             return makeImageData()
         case "/essential-feed/v1/feed":
             return makeFeedData()
+        case "/essential-feed/v1/image/2AB2AE66-A4B7-4A16-B374-51BBAC8DB086/comments":
+            return makeCommentsData()
         default:
             return Data()
         }
@@ -63,5 +65,22 @@ extension HTTPClientStub {
             ["id": "2AB2AE66-A4B7-4A16-B374-51BBAC8DB086", "image": "http://feed.com/image-1"],
             ["id": "A28F5FE3-27A7-44E9-8DF5-53742D0E4A5A", "image": "http://feed.com/image-2"]
         ]])
+    }
+
+    private static func makeCommentsData() -> Data {
+        return try! JSONSerialization.data(withJSONObject: ["items": [
+            [
+                "id": UUID().uuidString,
+                "message": makeCommentsMessage() ,
+                "created_at": "2022-06-22T10:20:00+0000",
+                "author": [
+                    "username": "a username"
+                ]
+            ]
+        ]])
+    }
+
+    static func makeCommentsMessage() -> String {
+        "a message"
     }
 }
