@@ -54,6 +54,13 @@ class FeedAcceptanceTests: XCTestCase {
         XCTAssertNotNil(store.feedCache, "Expected to keep non-expired cache")
     }
 
+    func test_onImageSelection_displaysComments() {
+        let comments = showCommentsForFirstImage()
+
+        XCTAssertEqual(comments.numberOfRenderedComments(), 1)
+        XCTAssertEqual(comments.commentMessage(at: 0), HTTPClientStub.makeCommentsMessage())
+    }
+
     // MARK: - Helpers
 
     private func launch(
@@ -67,6 +74,17 @@ class FeedAcceptanceTests: XCTestCase {
         let nav = sut.window?.rootViewController as? UINavigationController
         return nav?.topViewController as! ListViewController
     }
+
+    private func showCommentsForFirstImage() -> ListViewController {
+        let feed = launch(httpClient: .online(HTTPClientStub.successfulResponse), store: .empty)
+
+        feed.simulateTapOnFeedImage(at: 0)
+        RunLoop.current.run(until: Date())
+
+        let nav = feed.navigationController
+        return nav?.topViewController as! ListViewController
+    }
+    
 
     private func enterBackground(with store: InMemoryFeedStore) {
         let sut = SceneDelegate(httpClient: HTTPClientStub.offline, store: store)
