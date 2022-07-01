@@ -85,7 +85,6 @@ class FeedAcceptanceTests: XCTestCase {
         return nav?.topViewController as! ListViewController
     }
     
-
     private func enterBackground(with store: InMemoryFeedStore) {
         let sut = SceneDelegate(httpClient: HTTPClientStub.offline, store: store)
         sut.sceneWillResignActive(UIApplication.shared.connectedScenes.first!)
