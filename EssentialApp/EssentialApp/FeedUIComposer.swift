@@ -11,12 +11,12 @@ import EssentialFeediOS
 import UIKit
 
 public final class FeedUIComposer {
-    private typealias FeedPresentationAdapter = LoadResourcePresentationAdapter<[FeedImage], FeedViewAdapter>
+    private typealias  FeedPresentationAdapter = LoadResourcePresentationAdapter<Paginated<FeedImage>, FeedViewAdapter>
 
     private init() {}
 
     public static func feedComposedWith (
-        feedLoader: @escaping () -> AnyPublisher<[FeedImage], Error>,
+        feedLoader: @escaping () -> AnyPublisher<Paginated<FeedImage>, Error>,
         imageLoader: @escaping (URL) -> FeedImageDataLoader.Publisher,
         selection: @escaping ((FeedImage) -> Void) = { _ in }
     ) -> ListViewController { 
@@ -32,8 +32,7 @@ public final class FeedUIComposer {
                 selection: selection
             ),
             loadingView: WeakRefVirtualProxy(refreshController),
-            errorView: WeakRefVirtualProxy(feedController),
-            mapper: FeedPresenter.map
+            errorView: WeakRefVirtualProxy(feedController)
         )
 
         return feedController

@@ -21,7 +21,7 @@ public final class CommentsUIComposer {
         let presentationAdapter = CommentsPresentationAdapter(loader: { commentsLoader().dispatchOnMainQueue() })
         let refreshController = ListRefreshViewController()
         refreshController.onRefresh = presentationAdapter.loadResource
-        let commentsViewController = ListViewController.makeWith(refreshController: refreshController, title: ImageCommentsPresenter.title )
+        let commentsViewController = ListViewController.makeWith(refreshController: refreshController, title: ImageCommentsPresenter.title)
 
         presentationAdapter.presenter = LoadResourcePresenter(
             resourceView: CommentsViewAdapter(controller: commentsViewController),
