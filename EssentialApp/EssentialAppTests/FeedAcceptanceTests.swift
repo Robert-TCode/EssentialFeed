@@ -15,8 +15,28 @@ class FeedAcceptanceTests: XCTestCase {
         let feed = launch(httpClient: .online(HTTPClientStub.successfulResponse), store: .empty)
 
         XCTAssertEqual(feed.numberOfRenderedFeedImageViews(), 2)
-        XCTAssertEqual(feed.renderedFeedImageData(at: 0), HTTPClientStub.makeImageData())
-        XCTAssertEqual(feed.renderedFeedImageData(at: 1), HTTPClientStub.makeImageData())
+        XCTAssertEqual(feed.renderedFeedImageData(at: 0), HTTPClientStub.makeImageData0())
+        XCTAssertEqual(feed.renderedFeedImageData(at: 1), HTTPClientStub.makeImageData1())
+
+        XCTAssertTrue(feed.canLoadMoreFeed)
+
+        feed.simulateLoadMoreFeedAction()
+
+        XCTAssertEqual(feed.numberOfRenderedFeedImageViews(), 3)
+        XCTAssertEqual(feed.renderedFeedImageData(at: 0), HTTPClientStub.makeImageData0())
+        XCTAssertEqual(feed.renderedFeedImageData(at: 1), HTTPClientStub.makeImageData1())
+        XCTAssertEqual(feed.renderedFeedImageData(at: 2), HTTPClientStub.makeImageData2())
+
+        XCTAssertTrue(feed.canLoadMoreFeed)
+
+        feed.simulateLoadMoreFeedAction()
+
+        XCTAssertEqual(feed.numberOfRenderedFeedImageViews(), 3)
+        XCTAssertEqual(feed.renderedFeedImageData(at: 0), HTTPClientStub.makeImageData0())
+        XCTAssertEqual(feed.renderedFeedImageData(at: 1), HTTPClientStub.makeImageData1())
+        XCTAssertEqual(feed.renderedFeedImageData(at: 2), HTTPClientStub.makeImageData2())
+
+        XCTAssertFalse(feed.canLoadMoreFeed)
     }
 
     func test_onLaunch_displaysCachedRemoteFeedWhenCustomerHasNoConnectivity() {
@@ -28,8 +48,8 @@ class FeedAcceptanceTests: XCTestCase {
         let offlineFeed = launch(httpClient: .offline, store: sharedStore)
 
         XCTAssertEqual(offlineFeed.numberOfRenderedFeedImageViews(), 2)
-        XCTAssertEqual(offlineFeed.renderedFeedImageData(at: 0), HTTPClientStub.makeImageData())
-        XCTAssertEqual(offlineFeed.renderedFeedImageData(at: 1), HTTPClientStub.makeImageData())
+        XCTAssertEqual(offlineFeed.renderedFeedImageData(at: 0), HTTPClientStub.makeImageData0())
+        XCTAssertEqual(offlineFeed.renderedFeedImageData(at: 1), HTTPClientStub.makeImageData1())
     }
 
     func test_onLaunch_displaysEmptyFeedWhenCustomerHasNoConnectivityAndNoCache() {
