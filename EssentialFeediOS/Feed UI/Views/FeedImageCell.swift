@@ -27,6 +27,14 @@ public final class FeedImageCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+    
+        locationImageView.image = nil
+        locationLabel.text?.removeAll()
+        descriptionLabel.text?.removeAll()
+    }
+
     // MARK: View SetUp
 
     private func setupView() {
