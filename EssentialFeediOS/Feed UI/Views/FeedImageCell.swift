@@ -29,8 +29,8 @@ public final class FeedImageCell: UITableViewCell {
 
     public override func prepareForReuse() {
         super.prepareForReuse()
-    
-        locationImageView.image = nil
+
+        feedImageView.image = nil
         locationLabel.text?.removeAll()
         descriptionLabel.text?.removeAll()
     }
@@ -145,4 +145,17 @@ public final class FeedImageCell: UITableViewCell {
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
+}
+
+extension UIImage {
+    static func placeholder() -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()!
+        context.setFillColor(UIColor.gray.withAlphaComponent(0.2).cgColor)
+        context.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
 }
