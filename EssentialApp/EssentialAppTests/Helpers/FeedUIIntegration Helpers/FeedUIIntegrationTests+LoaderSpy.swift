@@ -13,7 +13,7 @@ import XCTest
 
 extension FeedUIIntegrationTests {
 
-    class LoaderSpy: FeedImageDataLoader {
+    class LoaderSpy {
 
         // MARK: FeedLoader
 
@@ -75,10 +75,6 @@ extension FeedUIIntegrationTests {
         }
 
         private(set) var cancelledImageURLs = [URL]()
-
-        func loadImageData(from url: URL) throws -> Data {
-            return Data()
-        }
 
         func loadImageDataPublisher(from url: URL) -> AnyPublisher<Data, Error> {
             let publisher = PassthroughSubject<Data, Error>()
