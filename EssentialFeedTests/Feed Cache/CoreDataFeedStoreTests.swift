@@ -167,12 +167,6 @@ class CoreDataFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
         XCTAssertEqual(existingObjects, [], "found orphaned objects in Core Data")
     }
 
-    func test_storeSideEffects_runSerially() throws {
-        let sut = try makeSUT()
-
-        assertThatSideEffectsRunSerially(on: sut)
-    }
-
     func test_imageEntity_properties() throws {
         let entity = try XCTUnwrap(
             CoreDataFeedStore.model?.entitiesByName["ManagedFeedImage"]
